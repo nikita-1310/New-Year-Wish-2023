@@ -1,0 +1,90 @@
+*{
+margin :0;
+padding : 0;
+box-sizing : boder-box;
+font-family: cursive;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #333;
+}
+.box{
+    position: relative;
+    height: 200px;
+    transform-style: preserve-3d;
+    animation: animate 16s linear infinite;
+}
+@keyframes animate {
+    0%{
+        transform: rotateX(-20deg) rotateY(360deg);
+    }
+    100%{
+        transform: rotateX(-20deg) rotateY(0deg);
+    }
+    
+}
+.box div{
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+}
+.box div.block span{
+    position: absolute;
+    left: calc(50% - 100px);
+    width: 200px;
+    height: 100px;
+    background-color: #444;
+    transform: rotateY(calc(90deg * var(--i))) translateZ(100px);
+    transition: 0.5s;
+}
+.box:hover div.block span{
+    background-color: rgb(179, 255, 0);
+    filter: drop-shadow(0 0 50px rgb(179, 255, 0));
+}
+.box div.text span{
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(calc(90deg * var(--i))) translateZ(150px);
+    cursor: pointer;
+    color: white;
+    font-size: 8em;
+    text-transform: uppercase;
+    z-index:1;
+    line-height: 1em;
+    -webkit-text-stroke: 3px #000;
+    transform-style: preserve-3d;
+}
+.box div.text span:nth-child(1){
+    font-size: 6em;
+}
+.box div.text span::before{
+    content: attr(data-text);
+    position: absolute;
+    bottom: 7px;
+    transform-origin: bottom;
+    transform: rotateX(-90deg);
+    color: rgba(0,0,0,0.1);
+    -webkit-text-stroke: 0px #000;
+    filter: blur(5px);
+}
+.box div.text span::after{
+    content: '';
+    position: absolute;
+    top: 100px;
+    width: 360px;
+    height: 60px;
+    background-color: #444;
+    transform: rotateX(-90deg);
+    transition: 0.5s;
+}
+.box:hover div.text span::after{
+    background-color: rgb(179, 255, 0);
+    filter: drop-shadow(0 0 50px rgb(179, 255, 0));
+}
